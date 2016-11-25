@@ -1,0 +1,5 @@
+collection
+
+_.shuffle:乱序 623
+
+_.sortBy：排序 662
