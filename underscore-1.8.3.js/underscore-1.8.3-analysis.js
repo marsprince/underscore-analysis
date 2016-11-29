@@ -691,6 +691,7 @@
   // behavior 是一个函数参数
   // _.groupBy, _.indexBy 以及 _.countBy 其实都是对数组元素进行分类
   // 分类规则就是 behavior 函数
+  // 循环，执行迭代函数返回key，执行behavior
   var group = function(behavior) {
     return function(obj, iteratee, context) {
       // 返回结果是一个对象
@@ -1414,6 +1415,12 @@
   // _.partial(function, *arguments)
   // _.partial 能返回一个方法
   // pre-fill 该方法的一些参数
+  // 在不改变this的情况下，通过参数填充数据
+  /*使用
+   _.wrap = function(func, wrapper) {
+   return _.partial(wrapper, func);
+   };
+  */
   _.partial = function(func) {
     // 提取希望 pre-fill 的参数
     // 如果传入的是 _，则这个位置的参数暂时空着，等待手动填入
@@ -1421,7 +1428,7 @@
 
     var bound = function() {
       var position = 0, length = boundArgs.length;
-      var args = Array(length);
+      var args = Array(length);//空数组，用来装参数
       for (var i = 0; i < length; i++) {
         // 如果该位置的参数为 _，则用 bound 方法的参数填充这个位置
         // args 为调用 _.partial 方法的 pre-fill 的参数 & bound 方法的 arguments

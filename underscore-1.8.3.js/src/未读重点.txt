@@ -3,3 +3,9 @@ collection
 _.shuffle:乱序 623
 
 _.sortBy：排序 662
+
+_.uniq：去重 979
+
+createIndexFinder：indexof 1240
+
+bind:1387
