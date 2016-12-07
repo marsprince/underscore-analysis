@@ -200,6 +200,7 @@
 
   // An internal function for creating a new object that inherits from another.
   // use in `_.create`
+  //object.create的实现
   var baseCreate = function(prototype) {
     // 如果 prototype 参数不是对象
     if (!_.isObject(prototype)) return {};
@@ -1344,6 +1345,9 @@
 
   // Determines whether to execute a function as a constructor
   // or a normal function with the provided arguments
+
+  //使用
+  //bind  =>  executeBound(func, bound, context, this, args.concat(slice.call(arguments)))
   var executeBound = function(sourceFunc, boundFunc, context, callingContext, args) {
     // 非 new 调用 _.bind 返回的方法（即 bound）
     // callingContext 不是 boundFunc 的一个实例
@@ -1474,6 +1478,7 @@
   // _.memoize(function, [hashFunction])
   // 适用于需要大量重复求值的场景
   // 比如递归求解菲波那切数
+  // 只要计算过，就会储存在内存里
   // @http://www.jameskrob.com/memoize.html
   // create hash for storing "expensive" function outputs
   // run expensive function
@@ -1746,8 +1751,9 @@
   // _.compose(*functions)
   // var tmp = _.compose(f, g, h)
   // tmp(args) => f(g(h(args)))
+  // 返回一个functions列表的组合物，其中每个函数消费其后跟随函数的返回值。在数学关系上，f(), g(), 和 h() 函数的组合产生f(g(h())).
   _.compose = function() {
-    var args = arguments; // funcs
+    var args = arguments; // 存储最开始的args
     var start = args.length - 1; // 倒序调用
     return function() {
       var i = start;
